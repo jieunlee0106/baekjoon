@@ -11,7 +11,6 @@ for i in range(student_n):
                     sw[j-1] = 1
                 else:
                     sw[j-1] = 0
-
     elif s_info[i][0] == 2:
         k = s_info[i][1]-1
         if 0 < k < len(sw):
@@ -21,7 +20,7 @@ for i in range(student_n):
                 sw[k] = 1
             elif sw[k] == 1:
                 sw[k] = 0
-            while sw[s] == sw[e] and (s >= 0 or e <= len(sw)):
+            while s >= 0 or e < len(sw) and sw[s] == sw[e]:
                 if sw[s] == 0 and sw[e] == 0:
                     sw[s], sw[e] = 1, 1
                     s -= 1

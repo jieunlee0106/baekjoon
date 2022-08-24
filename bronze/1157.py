@@ -10,4 +10,7 @@ for i in a:
         max_s = i
     elif max_cnt == s.count(i):
         max_s = '?'
+
+        break
 print(max_s.upper())
+
