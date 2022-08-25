@@ -1,52 +1,37 @@
-bingo= []
+temp_bingo = [list(map(int, input().split())) for _ in range(5)]
+arr = []
+bingo = [[0]*5 for _ in range(5)]
+for _ in range(5):
+    temp = map(int, input().split())
+    arr += temp
+i = 0
+while i != 25:
+    for r in range(5):
+        for c in range(5):
+            if temp_bingo[r][c] == arr[i]:
+                bingo[r][c] = i
+                i += 1
+                if i == 25:
+                    break
 order = []
-result = []
-#빙고 일렬로 정리
-for _ in range(5):
-    temp_bingo = list(map(int, input().split()))
-    bingo += temp_bingo
-#부르는 숫자 순으로 정리
-for _ in range(5):
-    temp = list(map(int, input().split()))
-    order += temp
+x_order = []
+y_order = []
+for r in range(5):
+    r_temp_order = []
+    c_temp_order = []
+    for c in range(5):
+        r_temp_order += [bingo[r][c]]
+        c_temp_order += [bingo[c][r]]
+    order += [max(r_temp_order)]
+    order += [max((c_temp_order))]
+for r in range(5):
+    for c in range(5):
+        if r == c:
+            x_order += [bingo[r][c]]
+        if r == 4-c:
+            y_order += [bingo[r][c]]
 
-for i in range(25):
-
-    if order[i] in bingo:
-        bingo[bingo.index(order[i])] = 0
-
-    if i >= 4:
-        #열 검사
-
-        for r in range(0, 5):
-            h = 0
-            f = 0
-            for c in range(r, r+21, 5):
-                if bingo[c] == 0:
-                    h += 1
-                else:
-                    h += 1
-                    f += 1
-                    break
-            if f == 0 :
-                result.append(i+1)
-        #행 검사
-        for r in range(0, 24, 5):
-            h = 0
-            f = 0
-            for c in range(r, r+5):
-                if bingo[c] == 0:
-                    h += 1
-                else:
-                    h += 1
-                    f += 1
-                    break
-            if f == 0 :
-                result.append(i + 1)
-        #대각선 검사
-        if (bingo[0] == 0 and bingo[6] == 0 and bingo[12] == 0 and bingo[18] == 0 and bingo[24] == 0) or (bingo[20] == 0 and bingo[4] == 0 and bingo[8] == 0 and bingo[12] == 0 and bingo[16] == 0 ):
-            result.append(i+1)
-for i in range(1, 26):
-    if result.count(i) == 3:
-        print(i)
-        break
+order += [max(x_order)]
+order += [max(y_order)]
+order = sorted(order)
+print(order[2]+1)
