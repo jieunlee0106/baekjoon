@@ -1,37 +1,37 @@
-n = int(input())
-sw = list(map(int, input().split()))
-student_n = int(input())
-s_info = [list(map(int, input().split())) for _ in range(student_n)]
-for i in range(student_n):
-    if s_info[i][0] == 1:
-        k = s_info[i][1]
-        for j in range(1, len(sw)+1):
-            if j >= k and j % k == 0:
-                if sw[j-1] == 0:
-                    sw[j-1] = 1
+sw_n = int(input())
+sw = [0]*(sw_n+1)
+sww = list(map(int, input().split()))
+for i in range(1, sw_n+1):
+    sw[i] = sww[i-1]
+
+n = int(input())    #학생 수
+for _ in range(n):
+    s, num = map(int, input().split())
+    # 남
+    if s == 1:
+        for i in range(1, sw_n+1):
+            if i%num == 0:
+                if sw[i-1] == 0:
+                    sw[i-1] = 1
                 else:
-                    sw[j-1] = 0
-    elif s_info[i][0] == 2:
-        k = s_info[i][1]-1
-        if 0 < k < len(sw):
-            s = k-1
-            e = k+1
-            if sw[k] == 0:
-                sw[k] = 1
-            elif sw[k] == 1:
-                sw[k] = 0
-            while s >= 0 or e < len(sw) and sw[s] == sw[e]:
-                if sw[s] == 0 and sw[e] == 0:
-                    sw[s], sw[e] = 1, 1
-                    s -= 1
-                    e += 1
-                elif sw[s] == 1 and sw[e] == 1:
-                    sw[s], sw[e] = 0, 0
-                    s -= 1
-                    e += 1
+                    sw[i-1] = 0
+    #여
+    else:
+        if sw[num] == 0:
+            sw[num] = 1
         else:
-            if sw[k - 1] == 0:
-                sw[k - 1] = 1
-            elif sw[k - 1] == 1:
-                sw[k - 1] = 0
-print(*sw)
+            sw[num] = 0
+
+        for j in range(1, sw_n+1):
+            if num-j >= 0 and num+1 <= sw_n and sw[num-j] == sw[num+1]:
+                if sw[num+1] == 0:
+                    sw[num-1] = 1
+                    sw[num+1] = 1
+                else:
+                    sw[num-1] = 0
+                    sw[num+1] = 0
+            else: break
+print(sw)
+
+
+
