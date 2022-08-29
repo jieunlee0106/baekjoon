@@ -34,4 +34,5 @@ for i in range(t):
         sr = sr + cal[rci]
         sc = sc+cal[cci]
         continue
+
 print(sc, sr)
