@@ -1,9 +1,9 @@
 ## 1.INDEX  
 ### Baekjoon 문제 풀이
 ### 언어
-Python  
+**Python**
 ### 개발 도구  
--VS code  
--PyCharm  
--Python Tutor  
--Jupyter nootbook  
+**-VS code**  
+**-PyCharm**  
+**-Python Tutor**  
+**-Jupyter nootbook**  
